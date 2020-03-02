@@ -1,0 +1,19 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ignore": "^5.1.4",
+    "modules": "^0.4.0",
+    "node": "^13.9.0",
+    "notes": "0.0.4",
+    "path": "^0.12.7"
+  }
+}
