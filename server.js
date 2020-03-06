@@ -10,18 +10,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let dbNotes = JSON.parse;
+// let dbNotes = JSON.parse;
    
-  fs.readFileSync(path.join(__dirname, "/db/db.json"), (err, data) => { 
-      dbNotes = JSON.parse(data);
-       if (err) 
-       throw err;
-   });
+//   fs.readFileSync(path.join(__dirname, "/db/db.json"), (err, data) => { 
+//       dbNotes = JSON.parse(data);
+//        if (err) 
+//        throw err;
+//    });
    
 
 
-const dbUpdate = dbNotes => {
-    fs.writeFileSync(path.join(__dirname, "/db/db.json"), JSON.stringify(dbNotes),
+const dbUpdate = db => {
+    fs.writeFileSync(path.join(__dirname, "/db/db.json"), JSON.stringify(db),
         err => { 
           if (err) throw err}
     );
@@ -49,8 +49,7 @@ app.get("/notes", function (req, res) {
 
 // API Get Route
 app.get("/api/notes", function(req, res) { 
-  console.log(req); 
-  console.log(db);
+  
   return res.json(db);
 });
 
@@ -59,17 +58,11 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
   let newNote = req.body;
-  let id = dbNotes.length;
+  let id = db.length;
   newNote.id = id + 1;
-
-  console.log(id); 
-  console.log(newNote); 
-  console.log(dbNotes);
-  console.log(db);
   db.push(newNote);
-
-  dbUpdate(dbNotes);
-  return res.json(dbNotes);
+  dbUpdate(db);
+  return res.json(db);
 }); 
 
 
@@ -79,13 +72,13 @@ app.post("/api/notes", function(req, res) {
 app.delete('/api/notes/:id', (req, res) => {
   let id = req.params.id;
   let x = 1;
-  delete dbNotes[id - 1];
-  dbUpdate(dbNotes);
-  res.send(dbNotes);
+  db.splice(id - 1, 2);
+  console.log(db);
+  dbUpdate(db);
+  res.send(db);
 }); 
 
 // Start the server on the port
 app.listen(PORT, function() {
   console.log("http://localhost:" + PORT);
   });
-

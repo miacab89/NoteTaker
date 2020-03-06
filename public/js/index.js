@@ -13,9 +13,7 @@ var getNotes = function() {
   return $.ajax({
     url: "/api/notes",
     method: "GET"
-    
-
-  });
+    });
 };
 
 
@@ -28,8 +26,6 @@ var saveNote = function(note) {
     method: "POST"
   });
 }; 
-
-
 
 // A function for deleting a note from the db
 var deleteNote = function(id) {
@@ -113,6 +109,7 @@ var handleRenderSaveBtn = function() {
 
 // Render's the list of note titles
 var renderNoteList = function(notes) {
+  console.log(notes);
   $noteList.empty();
 
   var noteListItems = [];
@@ -136,6 +133,7 @@ var renderNoteList = function(notes) {
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
+    console.log(data); 
     renderNoteList(data);
   });
 };
