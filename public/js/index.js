@@ -146,4 +146,8 @@ $noteTitle.on("keyup", handleRenderSaveBtn);
 $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
+<<<<<<< HEAD
 getAndRenderNotes();
+=======
+getAndRenderNotes();
+>>>>>>> acea0da976d5fb7fa9c707d647a18b6760658935
